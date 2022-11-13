@@ -14,4 +14,7 @@ module.exports = function(app) {
 
     app.route('/books')
         .post(jsonku.addBooks);
+
+    app.route('/books')
+        .put(jsonku.editById);
 }

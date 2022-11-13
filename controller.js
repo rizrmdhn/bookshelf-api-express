@@ -48,8 +48,8 @@ exports.addBooks = function (req, res) {
     var updatedAt = req.body.updatedAt;
 
     connection.query('INSERT INTO booksitem (name,year,author,summary,publisher,pageCount,readPage,finished,reading,insertedAt,updatedAt) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
-    [name,year,author,summary,publisher,pageCount,readPage,finished,reading,insertedAt,updatedAt],
-        function(error, rows, fields) {
+        [name, year, author, summary, publisher, pageCount, readPage, finished, reading, insertedAt, updatedAt],
+        function (error, rows, fields) {
             if (error) {
                 console.log(error);
             } else {
@@ -57,4 +57,32 @@ exports.addBooks = function (req, res) {
             }
         }
     );
+}
+
+//merubah data berdasarkan id
+exports.editById = function (req, res) {
+    let id = req.params.id;
+    var name = req.body.name;
+    var year = req.body.year;
+    var author = req.body.author;
+    var summary = req.body.summary;
+    var publisher = req.body.publisher;
+    var pageCount = req.body.pageCount;
+    var readPage = req.body.readPage;
+    var finished = req.body.finished;
+    var reading = req.body.reading;
+    var insertedAt = req.body.insertedAt;
+    var updatedAt = req.body.updatedAt;
+
+    connection.query('UPDATE booksitem SET name=?,year=?,author=?,summary=?,publisher=?,pageCount=?,readPage=?,finished=?,reading=?,insertedAt=?,updatedAt=?',
+        [name, year, author, summary, publisher, pageCount, readPage, finished, reading, insertedAt, updatedAt],
+        function (error) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok('Data berhasil diubah', res);
+            }
+        }
+    );
+
 }
